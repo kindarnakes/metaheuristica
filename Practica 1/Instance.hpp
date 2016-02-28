@@ -2,6 +2,7 @@
 #define __INSTANCE_HPP__
 
 #include <iostream>
+#include <limits>
 #include <string>
 #include <fstream>
 #include <vector>
@@ -22,11 +23,11 @@ class Instance {
 		//Number of lines between two instances
 		int _end_lines;
 
+
 	public:
 		Instance(std::string file_name, int header_lines, int length_line, char separator, int end_lines = 0) 
 			: _file_name(file_name), _header_lines(header_lines), _length_line(length_line), _end_lines(end_lines)
 		{
-			_file.open(_file_name);
 			_separator = separator;
 		}
 
@@ -36,12 +37,76 @@ class Instance {
 				_file.close();
 		}
 
-		bool load() {
+		bool loadInstance(std::vector<problem_element> &instance, int desired_instance=0) {
+			_file.open(_file_name);
+
 			if(not _file.is_open()) {
-				std::cerr << "File could not be opened." << std::endl;
+				std::cerr << "El fichero no se pudo abrir." << std::endl;
 				return false;
 			}
 
+			bool ret = skip(desired_instance-1);
+
+			if(not ret)
+				return ret;
+
+			instance = load();
+
+			_file.close();
+
+			return true;
+		}
+
+	//Estas funciones solo son accesibles desde dentro de la clase o clases que hereden
+	protected:
+		//Skips n instances
+		bool skip(unsigned int n) {
+			if(not _file.is_open()) {
+				std::cerr << "El fichero esta cerrado." << std::endl;
+				return false;
+			}
+
+			if(n==0)
+				return true;
+
+			try {
+				for(unsigned int i = 0; i < n; i++) {
+					std::cout << "Skiping instance no: " << i << std::endl;
+					//Skips the header
+					for(unsigned int j = 0; j < _header_lines+1; j++) {
+						if(j == _length_line) {
+							std::string line;
+							_file.ignore(256, ' ');
+							_file >> line;
+							_instance_length = std::stoi(line);
+						}
+						else
+							_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+					}
+
+					//Skips the instance
+					for(unsigned int j = 0; j < _instance_length; j++)
+						_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+				}
+			} catch(...) {
+				std::cerr << "\n\n# ERROR:\n";
+				std::cerr << "#  La instancia que ha querido cargar es mayor al número de instancias que contiene el documento.\n";
+				return false;
+			}
+
+			return true;
+		}
+
+		//Loads the current instance pointed by the file pointer
+		std::vector<problem_element> load() {
+			std::vector<problem_element> instance;
+
+			if(not _file.is_open()) {
+				std::cerr << "El fichero esta cerrado." << std::endl;
+				exit(-1);
+			}
+
+			//Loads the desired instance
 			for(unsigned int i = 0; i < _header_lines+1; i++) {
 				if(i == _length_line) {
 					std::string line;
@@ -53,32 +118,21 @@ class Instance {
 					_file.ignore(1024,'\n');
 			}
 
-			std::cout << "instance length: " << _instance_length << std::endl;
-
-			std::vector<kp_element> kp_elements;
-
-			std::cout << "separator: " << _separator << std::endl;
-
 			for(unsigned int i = 0; i < _instance_length; i++) {
 				std::string value;
-
-				kp_elements.push_back(kp_element());
-
-				getline(_file, value, _separator);
-				kp_elements[i].id = std::stof(value);
+				instance.push_back(problem_element());
 
 				getline(_file, value, _separator);
-				kp_elements[i].value = std::stof(value);
+				instance[i].id = std::stof(value);
+
+				getline(_file, value, _separator);
+				instance[i].a = std::stof(value);
 
 				getline(_file, value,'\n');
-				kp_elements[i].weight = std::stof(value);
-
-				std::cout << kp_elements[i].id << ": \n  w: " << kp_elements[i].weight << "\n  p: " << kp_elements[i].value << std::endl;
+				instance[i].b = std::stof(value);
 			}
 
-			_file.close();
-
-			return true;
+			return instance;
 		}
 };
 
