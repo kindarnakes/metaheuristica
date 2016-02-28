@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
 
 			cout << "\nInstancia " << inst_num << " de " << fileName << endl;
 			for(unsigned int i = 0; i < inst_v.size(); i++)
-				cout << inst_v[i].id << ": \n  w: " << inst_v[i].a << "\n  p: " << inst_v[i].b << endl;
+				cout << inst_v[i].id << ": \n  a: " << inst_v[i].a << "\n  b: " << inst_v[i].b << endl;
 		}
 
 	} while(opt);
