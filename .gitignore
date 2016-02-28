@@ -2,7 +2,7 @@
 *\.DS_Store
 
 #Exec files
-.*\/^testInstance$
+testInstance
 
 #Files
 *\.pdf
