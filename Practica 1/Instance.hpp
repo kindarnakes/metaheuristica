@@ -1,10 +1,11 @@
 #ifndef __INSTANCE_HPP__
 #define __INSTANCE_HPP__
 
+#include <fstream>
 #include <iostream>
 #include <limits>
+#include <regex>
 #include <string>
-#include <fstream>
 #include <vector>
 
 #include "Miscelanea.hpp"
@@ -57,7 +58,7 @@ class Instance {
 			return true;
 		}
 
-	//Estas funciones solo son accesibles desde dentro de la clase o clases que hereden
+	//Estas funciones solo son accesibles desde dentro de la clase o de clases que hereden
 	protected:
 		//Skips n instances
 		bool skip(unsigned int n) {
@@ -71,7 +72,6 @@ class Instance {
 
 			try {
 				for(unsigned int i = 0; i < n; i++) {
-					std::cout << "Skiping instance no: " << i << std::endl;
 					//Skips the header
 					for(unsigned int j = 0; j < _header_lines+1; j++) {
 						if(j == _length_line) {
@@ -86,6 +86,10 @@ class Instance {
 
 					//Skips the instance
 					for(unsigned int j = 0; j < _instance_length; j++)
+						_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+
+					//Se salta las lineas que separan instancias
+					for(unsigned int j = 0; j < _end_lines; j++)
 						_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 				}
 			} catch(...) {
@@ -107,15 +111,23 @@ class Instance {
 			}
 
 			//Loads the desired instance
-			for(unsigned int i = 0; i < _header_lines+1; i++) {
+			for(unsigned int i = 0; i < _header_lines; i++) {
 				if(i == _length_line) {
 					std::string line;
-					_file.ignore(256, ' ');
-					_file >> line;
-					_instance_length = std::stoi(line);
+					getline(_file, line);
+					const std::string c_line = line;
+					std::regex rgx(".* (\\d+) *$");
+					std::smatch match;
+
+					if (std::regex_search(c_line.begin(), c_line.end(), match, rgx))
+						_instance_length = std::stoi(match[1]);
+					else {
+						std::cerr << "No se encontro longitud de la instancia en la cabecera del fichero." << std::endl;
+						exit(-1);
+					}
 				}
 				else
-					_file.ignore(1024,'\n');
+					_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 			}
 
 			for(unsigned int i = 0; i < _instance_length; i++) {
