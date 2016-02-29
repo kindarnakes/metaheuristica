@@ -8,7 +8,7 @@ using namespace std;
 namespace Metaheuristica{
 
 
-//Pra hacer uso de la clase, hay que usar el constructor, sino se utiliza, el número de objetos quedará fijado a 0 para evitar problemas
+//Para hacer uso de la clase, hay que usar el constructor, sino se utiliza, el número de objetos quedará fijado a 0 para evitar problemas
 class Solucion{
 
  private:
