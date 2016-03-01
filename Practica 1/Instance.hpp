@@ -38,6 +38,7 @@ class Instance {
 				_file.close();
 		}
 
+		//Funcion para leer una instancia determinada de el fichero csv
 		bool loadInstance(std::vector<problem_element> &instance, int desired_instance=0) {
 			_file.open(_file_name);
 
@@ -58,6 +59,8 @@ class Instance {
 			return true;
 		}
 
+
+
 	//Estas funciones solo son accesibles desde dentro de la clase o de clases que hereden
 	protected:
 		//Skips n instances
@@ -67,7 +70,7 @@ class Instance {
 				return false;
 			}
 
-			if(n==0)
+			if(n==0 || n==-1)
 				return true;
 
 			try {
