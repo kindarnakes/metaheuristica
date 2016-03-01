@@ -13,7 +13,8 @@
 
 class Instance_KP : public Instance {
 	public:
-		Instance_KP(std::string file_name, int header_lines, int length_line, char separator, int end_lines = 0) 
+		//Valores del constructor adaptados a los archivos csv de esta practica
+		Instance_KP(std::string file_name, int header_lines=5, int length_line=1, char separator=',', int end_lines=2) 
 			: Instance(file_name, header_lines, length_line, separator, end_lines) 
 		{}
 
