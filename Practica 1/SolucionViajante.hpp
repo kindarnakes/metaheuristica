@@ -28,7 +28,7 @@ class SolucionViajante{
    {_solucion = solucion;};
   
   void setSolucion(int pos, int valor)
-   {if (pos <= _objetos)
+   {if (pos <= _solucion.size())
      _solucion[pos]=valor;}; //Para modificar un elemento de la solución, no se utiliza la posicion 0
 
   //El número de objetos no se podrá modificar, solo se inicializa al principio
