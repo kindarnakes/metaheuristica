@@ -11,7 +11,7 @@
 #include "Miscelanea.hpp"
 
 class Instance {
-	private:
+	protected:
 		std::fstream _file;
 
 		std::string _file_name;
@@ -23,7 +23,6 @@ class Instance {
 		char _separator;
 		//Number of lines between two instances
 		int _end_lines;
-
 
 	public:
 		Instance(std::string file_name, int header_lines, int length_line, char separator, int end_lines = 0) 
@@ -58,8 +57,6 @@ class Instance {
 
 			return true;
 		}
-
-
 
 	//Estas funciones solo son accesibles desde dentro de la clase o de clases que hereden
 	protected:
