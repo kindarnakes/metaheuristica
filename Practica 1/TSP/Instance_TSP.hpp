@@ -13,7 +13,8 @@
 
 class Instance_TSP : public Instance {
 	public:
-		Instance_TSP(std::string file_name, int header_lines, int length_line, char separator, int end_lines = 0)
+		//Valores del constructor adaptados a los archivos csv de esta practica
+		Instance_TSP(std::string file_name, int header_lines=6, int length_line=3, char separator=' ', int end_lines = 0)
 			: Instance(file_name, header_lines, length_line, separator, end_lines)
 		{}
 
