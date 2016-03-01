@@ -24,6 +24,8 @@ class Instance_KP : public Instance {
 				_file.close();
 		}
 
+		int getAptitude() {return 0;};
+
 };
 
 #endif

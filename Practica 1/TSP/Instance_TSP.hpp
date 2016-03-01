@@ -23,6 +23,9 @@ class Instance_TSP : public Instance {
 			if(_file.is_open())
 				_file.close();
 		}
+
+		int getAptitude() {return 0;}
+
 };
 
 #endif
