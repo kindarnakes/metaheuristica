@@ -3,7 +3,8 @@
 #include <fstream>
 #include <vector>
 
-#include "Instance.hpp"
+#include "KP/Instance_KP.hpp"
+#include "TSP/Instance_TSP.hpp"
 
 using namespace std;
 
@@ -26,20 +27,19 @@ int main(int argc, char** argv) {
 		if(opt != 0) {
 			cout << "Introduzca el nombre del fichero: ";
 			cin >> fileName;
-
-			cout << "¿Que numero de instancia desea cargar?: ";
-			cin >> inst_num;
 		}
 
 		bool ret = false;
 
 		if(opt == 1) {
 			fileName =  "TSP/" + fileName;
-			Instance instance(fileName, 6, 3, ' ');
-			ret = instance.loadInstance(inst_v, inst_num);
+			Instance_TSP instance(fileName);
+			ret = instance.loadInstance(inst_v);
 		} else if(opt == 2) {
 			fileName =  "KP/" + fileName;
-			Instance instance(fileName, 5, 1, ',', 2);
+			Instance_KP instance(fileName);
+			cout << "¿Que numero de instancia desea cargar?: ";
+			cin >> inst_num;
 			ret = instance.loadInstance(inst_v, inst_num);
 		}
 
