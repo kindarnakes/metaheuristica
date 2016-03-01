@@ -8,8 +8,8 @@
 #include <string>
 #include <vector>
 
-#include "../Instance.hpp"
-#include "../Miscelanea.hpp"
+#include "../lib/Instance.hpp"
+#include "../lib/Miscelanea.hpp"
 
 class Instance_TSP : public Instance {
 	public:
