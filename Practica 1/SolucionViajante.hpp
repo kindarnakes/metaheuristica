@@ -14,7 +14,7 @@ class SolucionViajante{
 
  public:
     //Observadores
-  inline vector<int> getSolucionViajante() const
+  inline vector<int> getSolucion() const
    {return _solucion;};
 
   int getSolucion(int n) const //Para consultar un elemento de la solución, no se utiliza la posición 0
