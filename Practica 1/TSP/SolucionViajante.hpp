@@ -34,7 +34,7 @@ class SolucionViajante{
      
   SolucionViajante(int objetos=0){
    int i;
-    for (i=0; i<= objetos; i++)
+    for (i=0; i<= objetos; i++) {
      //colocamos un elemento 0 para no utilizar la posición 0 del vector
     _solucion.push_back(i);
     }
