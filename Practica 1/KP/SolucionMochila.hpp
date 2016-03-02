@@ -10,24 +10,24 @@ namespace Metaheuristica{
 class Solucion_mochila{
 
  private:
-  vector<int> _solucion;
+  vector<bool> _solucion;
 
  public:
     //Observadores
-  inline vector<int> getSolucion() const
+  inline vector<bool> getSolucion() const
    {return _solucion;};
 
-  int getSolucion(int n) const //Para consultar un elemento de la solución, no se utiliza la posición 0
+  bool getSolucion(int n) const //Para consultar un elemento de la solución, no se utiliza la posición 0
    { if (n <= _solucion.size())
-      return _solucion.at(n);
+      return _solucion[n];
      else 
       return -1;}; 
 
    //Modificadores
-  inline void setSolucion(vector<int> solucion)
+  inline void setSolucion(vector<bool> solucion)
    {_solucion = solucion;};
   
-  void setSolucion(int pos, int valor)
+  void setSolucion(int pos, bool valor)
    {if (pos <= _solucion.size())
      _solucion[pos]=valor;}; //Para modificar un elemento de la solución, no se utiliza la posicion 0
 
@@ -36,7 +36,7 @@ class Solucion_mochila{
    
      for (i=0; i<=objetos; i++){
       //colocamos un elemento más en el vector para no utilizar la posición 0
-        _solucion.push_back(0);
+        _solucion.push_back(false);
       }
    
   }
