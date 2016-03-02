@@ -5,7 +5,7 @@ ifeq ($(OS),Darwin)
    FLAGS = -Wall -std=c++14
 else ifeq ($(OS),Linux)
    CC = g++
-   FLAGS = -Wall -lgsl -lgslcblas -std=c++11
+   FLAGS = -Wall -lgsl -lgslcblas -lm -std=c++11
 endif
 
 DEBUG = -g
@@ -14,11 +14,11 @@ OPTIMIZE = -O3
 all:
 	$(CC) -o main main.cpp $(FLAGS)
 
-optimize:
-	$(CC) -o main main.cpp $(FLAGS) $(OPTIMIZE)
+prueba:
+	$(CC) prueba.cpp -o prueba $(FLAGS)
 
 debug:
-	$(CC) -o testInstance testInstance.cpp $(FLAGS) $(DEBUG)
+	$(CC) -o main main.cpp $(FLAGS) $(DEBUG)
 
 test:
 	$(CC) -o testInstance testInstance.cpp $(FLAGS)
