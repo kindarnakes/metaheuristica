@@ -24,7 +24,9 @@ class InstanceTSP : public Instance {
 				_file.close();
 		}
 
-		int getAptitude() {return 0;}
+		double getAptitude(const problem_element a, const problem_element b) {
+			return sqrt(pow(a.a - b.a,2) + pow(a.b - b.b,2));
+		}
 
 };
 
