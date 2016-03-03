@@ -15,8 +15,8 @@ class SolucionMochila{
   inline vector<bool> getSolucion() const
    {return _solucion;};
 
-  bool getSolucion(int n) const //Para consultar un elemento de la solución, no se utiliza la posición 0
-   { if (n <= _solucion.size())
+  bool getSolucion(int n) const //Para consultar un elemento de la solución
+   { if (n <= _solucion.size()-1)
       return _solucion[n];
      else 
       return -1;}; 
@@ -26,14 +26,13 @@ class SolucionMochila{
    {_solucion = solucion;};
   
   void setSolucion(int pos, bool valor)
-   {if (pos <= _solucion.size())
-     _solucion[pos]=valor;}; //Para modificar un elemento de la solución, no se utiliza la posicion 0
+   {if (pos <= _solucion.size()-1)
+     _solucion[pos]=valor;}; //Para modificar un elemento de la solución
 
   SolucionMochila(int objetos=0){
    int i;
    
-     for (i=0; i<=objetos; i++){
-      //colocamos un elemento más en el vector para no utilizar la posición 0
+     for (i=0; i<objetos; i++){
         _solucion.push_back(false);
       }
    
