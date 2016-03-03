@@ -38,7 +38,7 @@ class Instance {
 		}
 
 		//Funcion para leer una instancia determinada de el fichero csv
-		bool loadInstance(std::vector<problem_element> &instance, int desired_instance=1) {
+		bool load_instance(std::vector<problem_element> &instance, int desired_instance=1) {
 			_file.open(_file_name);
 
 			if(not _file.is_open()) {

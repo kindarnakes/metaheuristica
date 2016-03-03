@@ -34,13 +34,13 @@ int main(int argc, char** argv) {
 		if(opt == 1) {
 			fileName =  "TSP/" + fileName;
 			Instance_TSP instance(fileName);
-			ret = instance.loadInstance(inst_v);
+			ret = instance.load_instance(inst_v);
 		} else if(opt == 2) {
 			fileName =  "KP/" + fileName;
 			Instance_KP instance(fileName);
 			cout << "¿Que numero de instancia desea cargar?: ";
 			cin >> inst_num;
-			ret = instance.loadInstance(inst_v, inst_num);
+			ret = instance.load_instance(inst_v, inst_num);
 		}
 
 		if(opt != 0) {
