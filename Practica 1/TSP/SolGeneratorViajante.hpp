@@ -24,21 +24,18 @@ class SolGeneratorViajante{
 
 		----------------------------------------------------- */
 
-		void randomSolutionGenerator(vector <SolucionViajante> &solution){
-
-		  int randPos, aux;
-
+		SolucionViajante randomSolutionGenerator(int objetos){
+			
+                  SolucionViajante solucion;
 			srand(time(NULL));
 
-			for(unsigned int i = 0; i < solution.size(); i++){
+			for(unsigned int i = 0; i < objetos; i++)
+				solucion.setSolucion(i, i);
 
-				randPos = rand() % solution.size();
-				aux = solution[i];
-
-				solution[i] = solution[randPos];
-				solution[randPos] = solution[i];
+			for(unsigned int i = 0; i < objetos){
+				 solucion.setSolucion(i, rand()%objetos);
 			}
-
+                       return solucion;
 		}
 };
 
