@@ -33,7 +33,7 @@ class SolGeneratorViajante{
 				solucion.setSolucion(i, i);
 
 			for(unsigned int i = 0; i < objetos){
-				 solucion.setSolucion(i, rand()%objetos);
+				 solucion.setSolucion(rand()%objetos, i);
 			}
                        return solucion;
 		}
