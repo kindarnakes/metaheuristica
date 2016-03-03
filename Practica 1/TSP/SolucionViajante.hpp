@@ -15,8 +15,8 @@ class SolucionViajante{
   inline vector<int> getSolucion() const
    {return _solucion;};
 
-  int getSolucion(int n) const //Para consultar un elemento de la solución, no se utiliza la posición 0
-   { if (n <= _solucion.size())
+  int getSolucion(int n) const //Para consultar un elemento de la solución
+   { if (n <= _solucion.size()-1)
       return _solucion.at(n);
      else 
       return -1;}; 
@@ -26,14 +26,13 @@ class SolucionViajante{
    {_solucion = solucion;};
   
   void setSolucion(int pos, int valor)
-   {if (pos <= _solucion.size())
-     _solucion[pos]=valor;}; //Para modificar un elemento de la solución, no se utiliza la posicion 0
+   {if (pos <= _solucion.size()-1)
+     _solucion[pos]=valor;}; //Para modificar un elemento de la solución
      
      
   SolucionViajante(int objetos=0){
    int i;
-    for (i=0; i<= objetos; i++) {
-     //colocamos un elemento 0 para no utilizar la posición 0 del vector
+    for (i=0; i< objetos; i++) {
     _solucion.push_back(i);
     }
   }
