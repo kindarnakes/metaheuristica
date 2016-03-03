@@ -7,7 +7,7 @@ using namespace std;
 
 namespace Metaheuristica{
 
-class Solucion_mochila{
+class SolucionMochila{
 
  private:
   vector<bool> _solucion;
