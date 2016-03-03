@@ -1,6 +1,7 @@
 #ifndef __INSTANCE_TSP_HPP__
 #define __INSTANCE_TSP_HPP__
 
+#include <cmath>
 #include <fstream>
 #include <iostream>
 #include <limits>
