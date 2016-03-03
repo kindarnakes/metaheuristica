@@ -5,8 +5,6 @@
 
 using namespace std;
 
-namespace Metaheuristica{
-
 class SolucionMochila{
 
  private:
@@ -40,6 +38,5 @@ class SolucionMochila{
       }
    
   }
- };  
-}
+ };
 #endif

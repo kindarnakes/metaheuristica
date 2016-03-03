@@ -5,8 +5,6 @@
 
 using namespace std;
 
-namespace Metaheuristica{
-
 class SolucionViajante{
 
  private:
@@ -39,6 +37,5 @@ class SolucionViajante{
     _solucion.push_back(i);
     }
   }
- };  
-}
+ };
 #endif
