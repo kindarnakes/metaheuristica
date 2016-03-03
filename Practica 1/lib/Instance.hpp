@@ -58,9 +58,6 @@ class Instance {
 			return true;
 		}
 
-		//Funcion virtual que calcula el valor de aptitud de una solucion
-		virtual double getAptitude() = 0;
-
 	//Estas funciones solo son accesibles desde dentro de la clase o de clases que hereden
 	protected:
 		//Skips n instances
