@@ -3,8 +3,8 @@
 #include <fstream>
 #include <vector>
 
-#include "KP/Instance_KP.hpp"
-#include "TSP/Instance_TSP.hpp"
+#include "KP/InstanceKP.hpp"
+#include "TSP/InstanceTSP.hpp"
 
 using namespace std;
 
@@ -33,11 +33,11 @@ int main(int argc, char** argv) {
 
 		if(opt == 1) {
 			fileName =  "TSP/" + fileName;
-			Instance_TSP instance(fileName);
+			InstanceTSP instance(fileName);
 			ret = instance.load_instance(inst_v);
 		} else if(opt == 2) {
 			fileName =  "KP/" + fileName;
-			Instance_KP instance(fileName);
+			InstanceKP instance(fileName);
 			cout << "¿Que numero de instancia desea cargar?: ";
 			cin >> inst_num;
 			ret = instance.load_instance(inst_v, inst_num);

@@ -11,14 +11,14 @@
 #include "../lib/Instance.hpp"
 #include "../lib/Miscelanea.hpp"
 
-class Instance_TSP : public Instance {
+class InstanceTSP : public Instance {
 	public:
 		//Valores del constructor adaptados a los archivos csv de esta practica
-		Instance_TSP(std::string file_name, int header_lines=6, int length_line=3, char separator=' ', int end_lines = 0)
+		InstanceTSP(std::string file_name, int header_lines=6, int length_line=3, char separator=' ', int end_lines = 0)
 			: Instance(file_name, header_lines, length_line, separator, end_lines)
 		{}
 
-		~Instance_TSP() 
+		~InstanceTSP() 
 		{
 			if(_file.is_open())
 				_file.close();
