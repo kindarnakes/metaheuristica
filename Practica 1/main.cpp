@@ -2,10 +2,8 @@
 
 #include "lib/Interfaz.hpp"
 
-/*
 #include "lib/Random.h"
 #include "lib/Timer.h"
-*/
 
 #include "lib/Instance.hpp"
 #include "KP/SolucionMochila.hpp"
