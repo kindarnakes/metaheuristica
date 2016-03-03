@@ -23,23 +23,19 @@ class SolGeneratorMochila{
 
 		----------------------------------------------------- */
 
-		void randomSolutionGenerator(vector <SolucionMochila> &solution){
-
-		  int randNum, randPos, aux;
-
+		SolucionMochila randomSolutionGenerator(int objetos){
+			
+                  SolucionMochila solucion;
 			srand(time(NULL));
 
-			for(unsigned int i = 0; i < solution.size(); i++)
-				solution[i] = false;
+			for(unsigned int i = 0; i < objetos; i++)
+				solucion.setSolucion(i, false);
 
-
-			randNum = rand() % solution.size();		//Numero de elementos que se incluiran en la mochila
-			for(unsigned int i = 0; i < randNum){
-
-				randPos = rand() % solution.size();		//Elemento a añadir
-				solution[randPos] = true;
+			for(unsigned int i = 0; i < objetos){
+				if (rand()%2 == 1)
+				 solucion.setSolucion(i, true);
 			}
-
+                       return solucion;
 		}
 };
 
