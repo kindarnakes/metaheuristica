@@ -1,10 +1,12 @@
 #ifndef __SOL_GENERATOR_MOCHILA_HPP__
 #define __SOL_GENERATOR_MOCHILA_HPP__
 
-#include "../lib/Miscelanea.hpp"
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+
+#include "../lib/Miscelanea.hpp"
+#include "SolGeneratorMochila.hpp"
 
 using namespace std;
 
