@@ -32,9 +32,6 @@ class Interfaz {
 				std::cin >> opt;
 			} while(0 > opt || opt > 2);
 
-			if(opt == 0)
-				exit(0);
-
 			return opt;
 		}
 
