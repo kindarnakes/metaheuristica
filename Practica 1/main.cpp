@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 
 
 		//El problema seleccionado es TSP
-		if(cli.getTypeProblem() == 1){
+		if(cli.getOpt() == 1){
 
 			SolucionViajante best_solution(inst_v.size()), actual_solution;
 			SolGeneratorViajante soluciones_a_gogo;	//XD No se me ocurria un nombre mejor
@@ -59,12 +59,7 @@ int main(int argc, char **argv) {
 				*/
 			}
 
-		}
-
-
-
-		//El problema seleccionado es KP
-		else{
+		} else{
 
 		
 
