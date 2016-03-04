@@ -31,7 +31,7 @@ class SolGeneratorViajante{
 			for(unsigned int i = 0; i < objetos; i++)
 				solucion.setSolucion(i, i);
 
-			for(unsigned int i = 0; i < objetos){
+			for(unsigned int i = 0; i < objetos; i++){
 				 solucion.setSolucion(rand()%objetos, i);
 			}
                        return solucion;
