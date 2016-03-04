@@ -10,6 +10,7 @@
 
 #include "../lib/Instance.hpp"
 #include "../lib/Miscelanea.hpp"
+#include "SolucionMochila.hpp"
 
 class InstanceKP : public Instance {
 	public:
@@ -24,7 +25,26 @@ class InstanceKP : public Instance {
 				_file.close();
 		}
 
-		int getAptitude() {return 0;};
+		int getAptitude(const SolucionMochila &solution, const int &KPSize, vector <problem_element> &info){
+
+
+			int totalSize = solution.pesoSolucion(info);	//Peso de los elementos escogidos
+
+			if(totalSize <= KPSize)
+
+				return solution.beneficioSolucion(info);	//Beneficio de los elementos escogidos
+
+
+			else{
+
+				int beneSol = solution.beneficioSolucion(info);
+				int beneMax = solution.beneficioMaximo(info);	//En vez de en la clase Solucion podemos meterlo en la clase instancia este sumatorio, pero lo he puesto ahi por coherencia
+
+				return (beneSol - beneMax);
+			}
+
+
+		}
 
 };
 
