@@ -11,6 +11,7 @@
 
 #include "../lib/Instance.hpp"
 #include "../lib/Miscelanea.hpp"
+#include "SolucionViajante.hpp"
 
 class InstanceTSP : public Instance {
 	public:
@@ -34,7 +35,7 @@ class InstanceTSP : public Instance {
 
 			double sumatorio = 0.0;
 
-			for(unsigned int i = 0; i < (solution.size() - 1); i++){
+			for(unsigned int i = 0; i < (info.size() - 1); i++){
 
 				//Sumamos la distancia entre el origen y el destino de cada camino de la solucion
 				sumatorio += distancia(info[ solution.getSolucion(i) ], info[ solution.getSolucion(i+1) ]);
