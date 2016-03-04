@@ -32,7 +32,7 @@ class SolGeneratorMochila{
 			for(unsigned int i = 0; i < objetos; i++)
 				solucion.setSolucion(i, false);
 
-			for(unsigned int i = 0; i < objetos){
+			for(unsigned int i = 0; i < objetos; i++){
 				if (rand()%2 == 1)
 				 solucion.setSolucion(i, true);
 			}
