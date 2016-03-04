@@ -36,7 +36,7 @@ class SolucionMochila{
 
 		if(_solucion.size() != info.size()){
 
-			cout << "Error. El tamaño de los vectores no coincide."
+			cout << "Error. El tamaño de los vectores no coincide.";
 			exit(0);
 		}
 
@@ -47,7 +47,7 @@ class SolucionMochila{
 			//----------->¿De entre a y b cual es el beneficio y cual es el peso?<-------------
 			//Considerare a como el beneficio y b como el peso
 
-			if (_solucion.getSolucion(i))	//Si el elemento esta incluido, se suma
+			if (_solucion[i])	//Si el elemento esta incluido, se suma
 
 				sumatorio += info[i].b;
 		}
@@ -60,7 +60,7 @@ class SolucionMochila{
 
 		if(_solucion.size() != info.size()){
 
-			cout << "Error. El tamaño de los vectores no coincide."
+			cout << "Error. El tamaño de los vectores no coincide.";
 			exit(0);
 		}
 
@@ -71,7 +71,7 @@ class SolucionMochila{
 			//----------->¿De entre a y b cual es el beneficio y cual es el peso?<-------------
 			//Considerare a como el beneficio y b como el peso
 
-			if (_solucion.getSolucion(i))	//Si el elemento esta incluido, se suma
+			if (_solucion[i])	//Si el elemento esta incluido, se suma
 
 				sumatorio += info[i].a;
 		}
@@ -88,7 +88,7 @@ class SolucionMochila{
 
 		if(_solucion.size() != info.size()){
 
-			cout << "Error. El tamaño de los vectores no coincide."
+			cout << "Error. El tamaño de los vectores no coincide.";
 			exit(0);
 		}
 

@@ -25,7 +25,7 @@ class InstanceKP : public Instance {
 				_file.close();
 		}
 
-		int getAptitude(const SolucionMochila &solution, const int &KPSize, vector <problem_element> &info){
+		int getAptitude(SolucionMochila &solution, const int &KPSize, vector <problem_element> &info){
 
 
 			int totalSize = solution.pesoSolucion(info);	//Peso de los elementos escogidos
