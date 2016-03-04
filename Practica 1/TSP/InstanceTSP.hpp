@@ -25,8 +25,23 @@ class InstanceTSP : public Instance {
 				_file.close();
 		}
 
-		double getAptitude(const problem_element a, const problem_element b) {
+		double distancia(const problem_element a, const problem_element b) {
 			return sqrt(pow(a.a - b.a,2) + pow(a.b - b.b,2));
+		}
+
+
+		double getAptitude(vector <problem_element> &info, const SolucionViajante &solution){
+
+			double sumatorio = 0.0;
+
+			for(unsigned int i = 0; i < (solution.size() - 1); i++){
+
+				//Sumamos la distancia entre el origen y el destino de cada camino de la solucion
+				sumatorio += distancia(info[ solution.getSolucion(i) ], info[ solution.getSolucion(i+1) ]);
+
+			}
+
+			return sumatorio;
 		}
 
 };
