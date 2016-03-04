@@ -6,7 +6,6 @@
 #include <ctime>
 
 #include "../lib/Miscelanea.hpp"
-#include "SolGeneratorMochila.hpp"
 
 using namespace std;
 
