@@ -1,7 +1,6 @@
 #ifndef __SOL_GENERATOR_MOCHILA_HPP__
 #define __SOL_GENERATOR_MOCHILA_HPP__
 
-#include "SolucionViajante.hpp"
 #include "../lib/Miscelanea.hpp"
 #include <vector>
 #include <cstdlib>
