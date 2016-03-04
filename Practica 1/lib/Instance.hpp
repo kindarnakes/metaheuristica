@@ -15,17 +15,17 @@ class Instance {
 		std::fstream _file;
 
 		std::string _file_name;
-		int _header_lines;
+		unsigned int _header_lines;
 		//Line that contains the length of one specific instance
-		int _length_line;
-		int _instance_length;
+		unsigned int _length_line;
+		unsigned int _instance_length;
 		//value separator
 		char _separator;
 		//Number of lines between two instances
-		int _end_lines;
+		unsigned int _end_lines;
 
 	public:
-		Instance(std::string file_name, int header_lines, int length_line, char separator, int end_lines = 0) 
+		Instance(std::string file_name, unsigned int header_lines, unsigned int length_line, char separator, unsigned int end_lines = 0) 
 			: _file_name(file_name), _header_lines(header_lines), _length_line(length_line), _end_lines(end_lines)
 		{
 			_separator = separator;
