@@ -19,7 +19,6 @@ class Interfaz {
 		~Interfaz() {}
 
 		//Observadores
-		int getTypeProblem(){ return opt;};
 		std::string getFileName(){ return fileName;};
 
 		int option_menu() {
