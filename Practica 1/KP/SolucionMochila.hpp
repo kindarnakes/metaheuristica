@@ -15,7 +15,7 @@ class SolucionMochila{
   inline vector<bool> getSolucion() const
    {return _solucion;};
 
-  bool getSolucion(int n) const //Para consultar un elemento de la solución
+  bool getSolucion(unsigned int n) const //Para consultar un elemento de la solución
    { if (n <= _solucion.size()-1)
       return _solucion[n];
      else 
@@ -25,7 +25,7 @@ class SolucionMochila{
   inline void setSolucion(vector<bool> solucion)
    {_solucion = solucion;};
   
-  void setSolucion(int pos, bool valor)
+  void setSolucion(unsigned int pos, bool valor)
    {if (pos <= _solucion.size()-1)
      _solucion[pos]=valor;}; //Para modificar un elemento de la solución
 

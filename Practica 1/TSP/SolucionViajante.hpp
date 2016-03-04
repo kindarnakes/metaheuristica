@@ -15,7 +15,7 @@ class SolucionViajante{
   inline vector<int> getSolucion() const
    {return _solucion;};
 
-  int getSolucion(int n) const //Para consultar un elemento de la solución
+  int getSolucion(unsigned int n) const //Para consultar un elemento de la solución
    { if (n <= _solucion.size()-1)
       return _solucion.at(n);
      else 
@@ -25,16 +25,14 @@ class SolucionViajante{
   inline void setSolucion(vector<int> solucion)
    {_solucion = solucion;};
   
-  void setSolucion(int pos, int valor)
+  void setSolucion(unsigned int pos, int valor)
    {if (pos <= _solucion.size()-1)
      _solucion[pos]=valor;}; //Para modificar un elemento de la solución
      
      
-  SolucionViajante(int objetos=0){
-   int i;
-    for (i=0; i< objetos; i++) {
+  SolucionViajante(unsigned int objetos=0){
+    for (unsigned int i=0; i< objetos; i++)
     _solucion.push_back(i);
-    }
   }
  };
 #endif
