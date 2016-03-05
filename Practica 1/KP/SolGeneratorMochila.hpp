@@ -26,7 +26,6 @@ class SolGeneratorMochila{
 		SolucionMochila randomSolutionGenerator(unsigned int objetos){
 			
                   SolucionMochila solucion;
-			srand(time(NULL));
 
 			for(unsigned int i = 0; i < objetos; i++)
 				solucion.setSolucion(i, false);

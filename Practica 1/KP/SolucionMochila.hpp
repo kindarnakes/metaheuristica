@@ -30,6 +30,19 @@ class SolucionMochila{
      _solucion[pos]=valor;}; //Para modificar un elemento de la solución
 
 
+	//Sobrecarga Operador =
+	SolucionMochila & operator=(const SolucionMochila &s){
+
+		if(this != &s)
+
+			this->_solucion = s.getSolucion();
+
+	  return *this;
+
+	}
+
+
+
 
 	//Sumatorios necesarios para la funcion fitness
 	int pesoSolucion(vector <problem_element> &info){
