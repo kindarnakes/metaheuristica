@@ -69,7 +69,7 @@ class Interfaz {
 		}
 
 		void print_instance(std::vector<problem_element> &inst_v) {
-				std::cout << "\nInstancia :";// << instance.inst_num << " de " << instance.fileName << endl;
+				std::cout << "\nInstancia :\n";// << instance.inst_num << " de " << instance.fileName << endl;
 				for(unsigned int i = 0; i < inst_v.size(); i++)
 					std::cout << inst_v[i].id << ": \n  a: " << inst_v[i].a << "\n  b: " << inst_v[i].b << std::endl;
 		}
