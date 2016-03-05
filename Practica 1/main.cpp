@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <string>
 
 
 #include "lib/Interfaz.hpp"
@@ -40,28 +41,59 @@ int main(int argc, char **argv) {
 		//El problema seleccionado es TSP
 		if(cli.getOpt() == 1){
 
+			InstanceTSP tsp_instance(cli.getFileName());
 			SolucionViajante best_solution(inst_v.size()), actual_solution;
 			SolGeneratorViajante soluciones_a_gogo;	//XD No se me ocurria un nombre mejor
-			double best_fitness = 0;
+			double best_fitness = 0, actual_fitness = 0;
+
+			//Obtenemos 1000 soluciones diferentes
+			for(unsigned int i = 0; i < 1000; i++){
+
+				
+				actual_solution = soluciones_a_gogo.randomSolutionGenerator(inst_v.size());
+				actual_fitness = tsp_instance.getAptitude(inst_v, actual_solution);
+
+				if(actual_fitness > best_fitness){
+
+					best_solution = actual_solution;
+					best_fitness = actual_fitness;
+				}
+
+
+			}
+
+
+
+
+		//El problema seleccionado es KP
+		} else{
+
+			InstanceKP kp_instance(cli.getFileName());
+			SolucionMochila best_solution(inst_v.size()), actual_solution;
+			SolGeneratorMochila soluciones_a_gogo;	//XD No se me ocurria un nombre mejor
+			double best_fitness = -100, actual_fitness = 0;
+
+//------------------------------------> Nesesitoh el tamanho de la moshila premoh <-----------------------
+			double KP_size = 12000;
 
 			//Obtenemos 1000 soluciones diferentes
 			for(unsigned int i = 0; i < 1000; i++){
 
 
-				/*	Pues parece que vamos a necesitar un constructor de copia
+				actual_solution = soluciones_a_gogo.randomSolutionGenerator(inst_v.size());
+				actual_fitness = kp_instance.getAptitude(actual_solution, KP_size, inst_v);
+
+				if(actual_fitness > best_fitness){
+
+					best_solution = actual_solution;
+					best_fitness = actual_fitness;
+				}
 
 
-				anterior = posterior;
-				posterior = soluciones_a_gogo(inst_v.size());
-
-				//Comparamos el valor de aptitud actual con el mejor encontrando hasta entonces
-				//Si es mejor, la guardamos como mejor solucion y mejor fitness y continuamos
-				*/
 			}
 
-		} else{
 
-		
+
 
 
 		}
