@@ -26,15 +26,15 @@ class SolGeneratorViajante{
 
 		SolucionViajante randomSolutionGenerator(unsigned int objetos){
 			
-                  SolucionViajante solucion;
+            SolucionViajante solucion(objetos);
 
 			for(unsigned int i = 0; i < objetos; i++)
 				solucion.setSolucion(i, i);
 
-			for(unsigned int i = 0; i < objetos; i++){
+			for(unsigned int i = 0; i < objetos; i++)
 				 solucion.setSolucion(rand()%objetos, i);
-			}
-                       return solucion;
+
+            return solucion;
 		}
 };
 
