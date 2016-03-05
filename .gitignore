@@ -5,6 +5,9 @@
 testInstance
 main
 
+#debug folder
+*dSYM
+
 #Files
 *\.pdf
 
