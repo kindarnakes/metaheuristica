@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 		vector<problem_element> inst_v = cli.read_instance();
 
 		//Aqui iria el codigo que hace algo con una instancia
-		cli.print_instance(inst_v);
+		//cli.print_instance(inst_v);
 
 		//El problema seleccionado es TSP
 		if(cli.getOpt() == 1){
@@ -54,6 +54,14 @@ int main(int argc, char **argv) {
 					best_fitness = actual_fitness;
 				}
 			}
+
+			//Muestra la solucion
+			cout << "El orden del recorrido es :\n";
+			for(auto i : best_solution.getSolucion())
+				cout << i << " -> ";
+
+			cout << "\ny la distancia total recorrida " << best_fitness << endl;
+
 		//El problema seleccionado es KP
 		} else{
 			InstanceKP kp_instance(cli.getFileName());
