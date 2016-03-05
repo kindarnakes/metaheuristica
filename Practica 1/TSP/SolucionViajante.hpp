@@ -28,6 +28,18 @@ class SolucionViajante{
   void setSolucion(unsigned int pos, int valor)
    {if (pos <= _solucion.size()-1)
      _solucion[pos]=valor;}; //Para modificar un elemento de la solución
+
+
+	//Sobrecarga Operador =
+	SolucionViajante & operator=(const SolucionViajante &s){
+
+		if(this != &p)
+
+			this->_solucion = s.getSolucion();
+
+	  return *this;
+
+	}
      
      
   SolucionViajante(unsigned int objetos=0){
