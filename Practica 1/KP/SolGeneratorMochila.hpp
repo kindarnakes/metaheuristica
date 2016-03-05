@@ -23,7 +23,7 @@ class SolGeneratorMochila{
 
 		----------------------------------------------------- */
 
-		SolucionMochila randomSolutionGenerator(int objetos){
+		SolucionMochila randomSolutionGenerator(unsigned int objetos){
 			
                   SolucionMochila solucion;
 			srand(time(NULL));
