@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 			InstanceKP kp_instance;
 			SolucionMochila best_solution(inst_v.size()), current_solution;
 			SolGeneratorMochila sol_gen;
-			double best_fitness = -100, actual_fitness = 0;
+			double best_fitness = -700000, actual_fitness = 0;
 
 
 			double KP_size = cli.getCapacity();	//Capacidad de la mochila
