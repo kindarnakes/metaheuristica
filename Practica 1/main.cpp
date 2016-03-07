@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 
 		//El problema seleccionado es TSP
 		if(cli.getOpt() == 1){
-			InstanceTSP tsp_instance(cli.getFileName());
+			InstanceTSP tsp_instance;
 			SolucionViajante best_solution(inst_v.size()), current_solution;
 			SolGeneratorViajante sol_gen;
 			double best_fitness = 0xFFFFFF, actual_fitness;
@@ -67,13 +67,15 @@ int main(int argc, char **argv) {
 
 		//El problema seleccionado es KP
 		} else{
-			InstanceKP kp_instance(cli.getFileName());
+			InstanceKP kp_instance;
 			SolucionMochila best_solution(inst_v.size()), current_solution;
 			SolGeneratorMochila sol_gen;
 			double best_fitness = -100, actual_fitness = 0;
 
 			//------------------------------------> Nesesitoh el tamanho de la moshila premoh <-----------------------
 			double KP_size = 12000;
+
+			cout << "La capacidad de la mochila es: " << kp_instance.getCapacity() << endl;
 
 			//Obtenemos 1000 soluciones diferentes
 			for(unsigned int i = 0; i < 1000; i++){
