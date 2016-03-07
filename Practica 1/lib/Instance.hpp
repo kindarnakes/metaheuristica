@@ -60,6 +60,25 @@ class Instance {
 
 	//Estas funciones solo son accesibles desde dentro de la clase o de clases que hereden
 	protected:
+		bool header() {
+			if(not _file.is_open()) {
+				std::cerr << "El fichero esta cerrado." << std::endl;
+				return false;
+			}
+
+			for(unsigned int i = 0; i < _header_lines+1; i++) {
+				if(i == _length_line) {
+					std::string line;
+					_file.ignore(256, ' ');
+					_file >> line;
+					_instance_length = std::stoi(line);
+				}
+				else
+					_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+			}
+		}
+
+
 		//Skips n instances
 		bool skip(unsigned int n) {
 			if(not _file.is_open()) {
@@ -72,17 +91,8 @@ class Instance {
 
 			try {
 				for(unsigned int i = 0; i < n; i++) {
-					//Skips the header
-					for(unsigned int j = 0; j < _header_lines+1; j++) {
-						if(j == _length_line) {
-							std::string line;
-							_file.ignore(256, ' ');
-							_file >> line;
-							_instance_length = std::stoi(line);
-						}
-						else
-							_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-					}
+					//Reads the header
+					header();
 
 					//Skips the instance
 					for(unsigned int j = 0; j < _instance_length; j++)
