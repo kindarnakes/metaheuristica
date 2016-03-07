@@ -42,14 +42,16 @@ int main(int argc, char **argv) {
 			InstanceTSP tsp_instance(cli.getFileName());
 			SolucionViajante best_solution(inst_v.size()), current_solution;
 			SolGeneratorViajante sol_gen;
-			double best_fitness = 0, actual_fitness = 0;
+			double best_fitness = 0xFFFFFF, actual_fitness;
+
+			cout << "Best fitness: " << best_fitness << endl;
 
 			//Obtenemos 1000 soluciones diferentes
 			for(unsigned int i = 0; i < 1000; i++){
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 				actual_fitness = tsp_instance.getAptitude(inst_v, current_solution);
 
-				if(actual_fitness > best_fitness){
+				if(actual_fitness < best_fitness){
 					best_solution = current_solution;
 					best_fitness = actual_fitness;
 				}
@@ -88,3 +90,4 @@ int main(int argc, char **argv) {
 
 	return 0;
 }
+
