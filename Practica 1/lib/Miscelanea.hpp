@@ -4,8 +4,8 @@
 //Estructura generica para los dos problemas
 struct problem_element {
 	int id;
-	double a;
-	double b;
+	double a; //mochila beneficio, viajante x
+	double b; //mochila peso, viajante y
 };
 
 #endif
