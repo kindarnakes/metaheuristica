@@ -43,12 +43,15 @@ int main(int argc, char **argv) {
 			InstanceTSP tsp_instance;
 			SolucionViajante best_solution(inst_v.size()), current_solution;
 			SolGeneratorViajante sol_gen;
-			double best_fitness = 0xFFFFFF, actual_fitness;
+			double best_fitness, actual_fitness;
 
 			cout << "Best fitness: " << best_fitness << endl;
 
-			//Obtenemos 1000 soluciones diferentes
-			for(unsigned int i = 0; i < 1000; i++){
+			//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
+			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
+			best_fitness = tsp_instance.getAptitude(inst_v, current_solution);
+			
+			for(unsigned int i = 0; i < 999; i++){
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 				actual_fitness = tsp_instance.getAptitude(inst_v, current_solution);
 
@@ -75,15 +78,18 @@ int main(int argc, char **argv) {
 			InstanceKP kp_instance;
 			SolucionMochila best_solution(inst_v.size()), current_solution;
 			SolGeneratorMochila sol_gen;
-			double best_fitness = -700000, actual_fitness = 0;
+			double best_fitness, actual_fitness;
 
 
 			double KP_size = cli.getCapacity();	//Capacidad de la mochila
 
 			cout << "\nLa capacidad de la mochila es: " << cli.getCapacity() << endl;
 
-			//Obtenemos 1000 soluciones diferentes
-			for(unsigned int i = 0; i < 1000; i++){
+			//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
+			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
+			best_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
+			
+			for(unsigned int i = 0; i < 999; i++){
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 				actual_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
 
