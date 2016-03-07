@@ -65,6 +65,11 @@ int main(int argc, char **argv) {
 
 			cout << "\ny la distancia total recorrida " << best_fitness << endl;
 
+
+			tsp_instance.saveResults(best_fitness, best_solution);		//Guardamos el resultado
+
+
+
 		//El problema seleccionado es KP
 		} else{
 			InstanceKP kp_instance;
@@ -72,8 +77,8 @@ int main(int argc, char **argv) {
 			SolGeneratorMochila sol_gen;
 			double best_fitness = -100, actual_fitness = 0;
 
-			//------------------------------------> Nesesitoh el tamanho de la moshila premoh <-----------------------
-			double KP_size = 12000;
+
+			double KP_size = cli.getCapacity();	//Capacidad de la mochila
 
 			cout << "\nLa capacidad de la mochila es: " << cli.getCapacity() << endl;
 
@@ -87,6 +92,8 @@ int main(int argc, char **argv) {
 					best_fitness = actual_fitness;
 				}
 			}
+
+			kp_instance.saveResults(best_fitness, best_solution);	//Guardamos el resultado
 		}
 
 	}
