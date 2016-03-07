@@ -23,18 +23,17 @@ class SolGeneratorMochila{
 
 		----------------------------------------------------- */
 
-		SolucionMochila randomSolutionGenerator(unsigned int objetos){
-			
-                  SolucionMochila solucion;
+		SolucionMochila randomSolutionGenerator(unsigned int objetos) {
+			SolucionMochila solucion(objetos);
 
 			for(unsigned int i = 0; i < objetos; i++)
 				solucion.setSolucion(i, false);
 
-			for(unsigned int i = 0; i < objetos; i++){
+			for(unsigned int i = 0; i < objetos; i++)
 				if (rand()%2 == 1)
 				 solucion.setSolucion(i, true);
-			}
-                       return solucion;
+
+			return solucion;
 		}
 };
 
