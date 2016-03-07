@@ -25,6 +25,8 @@ class InstanceKP : public Instance {
 				_file.close();
 		}
 
+
+		//Funcion que devuelve la bondad de una solucion
 		int getAptitude(SolucionMochila &solution, const int &KPSize, vector <problem_element> &info){
 
 
@@ -38,10 +40,42 @@ class InstanceKP : public Instance {
 			else{
 
 				int beneSol = solution.beneficioSolucion(info);
-				int beneMax = solution.beneficioMaximo(info);	//En vez de en la clase Solucion podemos meterlo en la clase instancia este sumatorio, pero lo he puesto ahi por coherencia
+				int beneMax = solution.beneficioMaximo(info);
 
 				return (beneSol - beneMax);
 			}
+
+		}
+
+
+		//Funcion que almacena en un fichero una serie de datos de salida del programa
+		void saveResults(const double &best_fitness, const SolucionMochila &best_solution){
+
+
+		  int id = 1;	//Identificador del numero de ejecucion del programa
+		  string line;
+
+		  ifstream fr("KP_soluciones.txt");
+			
+			//Contamos cual ejecucion del programa es esta
+			if(fr.is_open()){
+				while(! fr.eof()){
+
+					getline(fr, line);
+					id++;
+				}
+			}
+
+			fr.close();
+
+
+		  ofstream fs("KP_soluciones.txt", std::ofstream::app);	//Abrimos el flujo de salida al fichero
+
+
+			//Escribimos los resultados de esta ejecucion
+			fs << id << " " << best_fitness << "\n";
+
+			fs.close();
 
 
 		}

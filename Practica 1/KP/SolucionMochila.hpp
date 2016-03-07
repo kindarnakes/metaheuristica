@@ -44,7 +44,7 @@ class SolucionMochila{
 
 
 
-	//Sumatorios necesarios para la funcion fitness
+	//Sumatorio del peso de la solucion actual
 	int pesoSolucion(vector <problem_element> &info){
 
 		if(_solucion.size() != info.size()){
@@ -57,8 +57,6 @@ class SolucionMochila{
 
 		for(unsigned int i = 0; i < _solucion.size(); i++){
 
-			//----------->¿De entre a y b cual es el beneficio y cual es el peso?<-------------
-			//Considerare a como el beneficio y b como el peso
 
 			if (_solucion[i])	//Si el elemento esta incluido, se suma
 
@@ -69,6 +67,7 @@ class SolucionMochila{
 	}
 
 
+	//Sumatorio del beneficio de la solucion actual
 	int beneficioSolucion(vector <problem_element> &info){
 
 		if(_solucion.size() != info.size()){
@@ -81,8 +80,6 @@ class SolucionMochila{
 
 		for(unsigned int i = 0; i < _solucion.size(); i++){
 
-			//----------->¿De entre a y b cual es el beneficio y cual es el peso?<-------------
-			//Considerare a como el beneficio y b como el peso
 
 			if (_solucion[i])	//Si el elemento esta incluido, se suma
 
@@ -97,6 +94,7 @@ class SolucionMochila{
 	}
 
 
+	//Sumatorio del beneficio de todos los elementos de la instancia
 	int beneficioMaximo(vector <problem_element> &info){
 
 		if(_solucion.size() != info.size()){
@@ -109,8 +107,6 @@ class SolucionMochila{
 
 		for(unsigned int i = 0; i < _solucion.size(); i++){
 
-			//----------->¿De entre a y b cual es el beneficio y cual es el peso?<-------------
-			//Considerare a como el beneficio y b como el peso
 
 			sumatorio += info[i].a;
 		}
