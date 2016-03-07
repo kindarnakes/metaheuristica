@@ -45,6 +45,40 @@ class InstanceTSP : public Instance {
 			return sumatorio;
 		}
 
+
+
+		//Funcion que almacena en un fichero una serie de datos de salida del programa
+		void saveResults(const double &best_fitness, const SolucionViajante &best_solution){
+
+
+		  int id = 1;	//Identificador del numero de ejecucion del programa
+		  string line;
+
+		  ifstream fr("TSP_soluciones.txt");
+			
+			//Contamos cual ejecucion del programa es esta
+			if(fr.is_open()){
+				while(! fr.eof()){
+
+					getline(fr, line);
+					id++;
+				}
+			}
+
+			fr.close();
+
+
+		  ofstream fs("TSP_soluciones.txt", std::ofstream::app);	//Abrimos el flujo de salida al fichero
+
+
+			//Escribimos los resultados de esta ejecucion
+			fs << id << " " << best_fitness << "\n";
+
+			fs.close();
+
+
+		}
+
 };
 
 #endif
