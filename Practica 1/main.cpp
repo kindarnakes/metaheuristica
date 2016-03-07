@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 			//------------------------------------> Nesesitoh el tamanho de la moshila premoh <-----------------------
 			double KP_size = 12000;
 
-			cout << "La capacidad de la mochila es: " << kp_instance.getCapacity() << endl;
+			cout << "\nLa capacidad de la mochila es: " << cli.getCapacity() << endl;
 
 			//Obtenemos 1000 soluciones diferentes
 			for(unsigned int i = 0; i < 1000; i++){

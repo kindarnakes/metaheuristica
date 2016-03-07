@@ -14,12 +14,16 @@ class Interfaz {
 		int opt;
 		std::string fileName;
 
+		unsigned int _capacity;
+
 	public:
 		Interfaz() {}
 		~Interfaz() {}
 
 		//Observadores
 		std::string getFileName(){ return fileName;};
+
+		unsigned int getCapacity() {return _capacity;}
 
 		int option_menu() {
 			do {
@@ -38,7 +42,6 @@ class Interfaz {
 		int getOpt() {return opt;}
 
 		std::vector<problem_element> read_instance() {
-			Instance *inst;
 			bool ret = false;
 			std::vector<problem_element> inst_v;
 
@@ -49,16 +52,18 @@ class Interfaz {
 
 				if(opt == 1) {
 					fileName =  "TSP/" + fileName;
-					inst = new InstanceTSP(fileName);
-					ret = inst->load_instance(inst_v);
+					InstanceTSP inst(fileName);
+					ret = inst.load_instance(inst_v);
 				} else if(opt == 2) {
 					fileName =  "KP/" + fileName;
-					inst = new InstanceKP(fileName);
+					InstanceKP inst(fileName);
 
 					int inst_num;
 					std::cout << "¿Que numero de instancia desea cargar?: ";
 					std::cin >> inst_num;
-					ret = inst->load_instance(inst_v, inst_num);
+					ret = inst.load_instance(inst_v, inst_num);
+
+					_capacity = inst.getCapacity();
 				}
 
 				if(not ret)

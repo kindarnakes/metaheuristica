@@ -24,6 +24,8 @@ class Instance {
 		//Number of lines between two instances
 		unsigned int _end_lines;
 
+		std::vector<std::string> _header;
+
 	public:
 		Instance() {}
 		Instance(std::string file_name, unsigned int header_lines, unsigned int length_line, char separator, unsigned int end_lines = 0) 
@@ -59,18 +61,24 @@ class Instance {
 			return true;
 		}
 
+		std::vector<std::string> getHeader() {return _header;}
+		std::string getHeader(unsigned int n) {return _header[n];}
+
 	//Estas funciones solo son accesibles desde dentro de la clase o de clases que hereden
 	protected:
-		bool header() {
+		//Si store esta a true se guarda el contenido de la cabecera en el vector _header
+		bool header(bool store=false) {
 			if(not _file.is_open()) {
 				std::cerr << "El fichero esta cerrado." << std::endl;
 				return false;
 			}
 
 			for(unsigned int i = 0; i < _header_lines; i++) {
+				std::string line;
+				getline(_file, line);
+				if(store)
+					_header.push_back(line);
 				if(i == _length_line) {
-					std::string line;
-					getline(_file, line);
 					const std::string c_line = line;
 					std::regex rgx(".* (\\d+) *$");
 					std::smatch match;
@@ -82,8 +90,6 @@ class Instance {
 						exit(-1);
 					}
 				}
-				else
-					_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 			}
 		}
 
@@ -129,7 +135,7 @@ class Instance {
 				exit(-1);
 			}
 
-			header();
+			header(true);
 
 			for(unsigned int i = 0; i < _instance_length; i++) {
 				std::string value;
