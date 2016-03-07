@@ -25,6 +25,7 @@ class Instance {
 		unsigned int _end_lines;
 
 	public:
+		Instance() {}
 		Instance(std::string file_name, unsigned int header_lines, unsigned int length_line, char separator, unsigned int end_lines = 0) 
 			: _file_name(file_name), _header_lines(header_lines), _length_line(length_line), _end_lines(end_lines)
 		{
