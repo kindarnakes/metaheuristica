@@ -66,12 +66,20 @@ class Instance {
 				return false;
 			}
 
-			for(unsigned int i = 0; i < _header_lines+1; i++) {
+			for(unsigned int i = 0; i < _header_lines; i++) {
 				if(i == _length_line) {
 					std::string line;
-					_file.ignore(256, ' ');
-					_file >> line;
-					_instance_length = std::stoi(line);
+					getline(_file, line);
+					const std::string c_line = line;
+					std::regex rgx(".* (\\d+) *$");
+					std::smatch match;
+
+					if (std::regex_search(c_line.begin(), c_line.end(), match, rgx))
+						_instance_length = std::stoi(match[1]);
+					else {
+						std::cerr << "No se encontro longitud de la instancia en la cabecera del fichero." << std::endl;
+						exit(-1);
+					}
 				}
 				else
 					_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -120,25 +128,7 @@ class Instance {
 				exit(-1);
 			}
 
-			//Loads the desired instance
-			for(unsigned int i = 0; i < _header_lines; i++) {
-				if(i == _length_line) {
-					std::string line;
-					getline(_file, line);
-					const std::string c_line = line;
-					std::regex rgx(".* (\\d+) *$");
-					std::smatch match;
-
-					if (std::regex_search(c_line.begin(), c_line.end(), match, rgx))
-						_instance_length = std::stoi(match[1]);
-					else {
-						std::cerr << "No se encontro longitud de la instancia en la cabecera del fichero." << std::endl;
-						exit(-1);
-					}
-				}
-				else
-					_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-			}
+			header();
 
 			for(unsigned int i = 0; i < _instance_length; i++) {
 				std::string value;

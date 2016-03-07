@@ -34,6 +34,7 @@ int main(int argc, char **argv) {
 		//Se ejecuta hasta que se carga una instancia de un fichero valido
 		vector<problem_element> inst_v = cli.read_instance();
 
+		//LEFT FOR DEBUGGING
 		//Aqui iria el codigo que hace algo con una instancia
 		//cli.print_instance(inst_v);
 
