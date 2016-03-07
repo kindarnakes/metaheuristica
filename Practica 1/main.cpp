@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 			best_fitness = tsp_instance.getAptitude(inst_v, current_solution);
 			
-			for(unsigned int i = 0; i < 999; i++){
+			for(unsigned int i = 0; i < 1000; i++){
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 				actual_fitness = tsp_instance.getAptitude(inst_v, current_solution);
 
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
 			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 			best_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
 			
-			for(unsigned int i = 0; i < 999; i++){
+			for(unsigned int i = 0; i < 1000; i++){
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 				actual_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
 
