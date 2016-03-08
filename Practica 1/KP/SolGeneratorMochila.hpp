@@ -26,12 +26,32 @@ class SolGeneratorMochila{
 		SolucionMochila randomSolutionGenerator(unsigned int objetos) {
 			SolucionMochila solucion(objetos);
 
+/*
 			for(unsigned int i = 0; i < objetos; i++)
 				solucion.setSolucion(i, false);
 
 			for(unsigned int i = 0; i < objetos; i++)
 				if (rand()%2 == 1)
 				 solucion.setSolucion(i, true);
+*/
+
+
+			int incluidos = rand() % objetos;
+			int pos;
+
+			for (int i = 0; i < incluidos; i++){
+
+				while(true){
+
+					pos = rand() % objetos;
+					if(solucion.getSolucion(pos) == false)
+						break;
+
+				}
+
+				solucion.setSolucion(pos, true);
+			}
+
 
 			return solucion;
 		}

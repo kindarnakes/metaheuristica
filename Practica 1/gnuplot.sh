@@ -8,4 +8,7 @@ set xlabel "Numero de iteracion"
 set ylabel "Fitness mejor Solucion"
 
 plot 'KP_soluciones.txt' using 1:2 t "Fitness" w l
+
+set output "graficoTSP.eps"
+plot 'TSP_soluciones.txt' using 1:2 t "Fitness" w l
 _end_
