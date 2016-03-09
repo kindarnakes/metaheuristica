@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
 
 	//Siempre se ejcuta hasta que el usuario quiera salir
 	while(true) {
-		if(not cli.option_menu())
+		if(not cli.option_menu(veces))
 			break;
 
 		//Se ejecuta hasta que se carga una instancia de un fichero valido
