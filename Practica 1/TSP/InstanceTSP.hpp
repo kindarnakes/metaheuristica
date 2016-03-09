@@ -52,7 +52,7 @@ class InstanceTSP : public Instance {
 		void saveResults(const double &best_fitness, const SolucionViajante &best_solution){
 
 
-		  int id = 1;	//Identificador del numero de ejecucion del programa
+		  int id = 0;	//Identificador del numero de ejecucion del programa
 		  string line;
 
 		  ifstream fr("TSP_soluciones.txt");
