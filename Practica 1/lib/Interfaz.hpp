@@ -41,7 +41,7 @@ class Interfaz {
 
 		int getOpt() {return opt;}
 
-		std::vector<problem_element> read_instance() {
+		std::vector<problem_element> read_instance(int &veces) {
 			bool ret = false;
 			std::vector<problem_element> inst_v;
 
@@ -62,6 +62,8 @@ class Interfaz {
 					std::cout << "¿Que numero de instancia desea cargar?: ";
 					std::cin >> inst_num;
 					ret = inst.load_instance(inst_v, inst_num);
+					std::cout << "Número de veces a ejecutar: ";
+					std::cin >> veces;
 
 					_capacity = inst.getCapacity();
 				}
