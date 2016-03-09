@@ -30,11 +30,11 @@ int main(int argc, char **argv) {
 
 	//Siempre se ejcuta hasta que el usuario quiera salir
 	while(true) {
-		if(not cli.option_menu(veces))
+		if(not cli.option_menu())
 			break;
 
 		//Se ejecuta hasta que se carga una instancia de un fichero valido
-		vector<problem_element> inst_v = cli.read_instance();
+		vector<problem_element> inst_v = cli.read_instance(veces);
 
 		//LEFT FOR DEBUGGING
 		//Aqui iria el codigo que hace algo con una instancia
