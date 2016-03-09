@@ -23,6 +23,8 @@ using namespace std;
 int main(int argc, char **argv) {
 
 	Interfaz cli;
+	int i;
+	int veces;
 	srand(time(NULL));
 
 
@@ -40,13 +42,13 @@ int main(int argc, char **argv) {
 
 		//El problema seleccionado es TSP
 		if(cli.getOpt() == 1){
+				
 			InstanceTSP tsp_instance;
 			SolucionViajante best_solution(inst_v.size()), current_solution;
 			SolGeneratorViajante sol_gen;
 			double best_fitness, actual_fitness;
-
-			cout << "Best fitness: " << best_fitness << endl;
-
+			
+			for (i = 0; i < veces; i++){
 			//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
 			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 			best_fitness = tsp_instance.getAptitude(inst_v, current_solution);
@@ -62,7 +64,7 @@ int main(int argc, char **argv) {
 			}
 
 			//Muestra la solucion
-			cout << "El orden del recorrido es :\n";
+			cout << "Para la ejecución: " << i+1 << endl << "El orden del recorrido es :\n";
 			for(auto i : best_solution.getSolucion())
 				cout << i << " -> ";
 
@@ -70,7 +72,7 @@ int main(int argc, char **argv) {
 
 
 			tsp_instance.saveResults(best_fitness, best_solution);		//Guardamos el resultado
-
+			}
 
 
 		//El problema seleccionado es KP
@@ -79,12 +81,10 @@ int main(int argc, char **argv) {
 			SolucionMochila best_solution(inst_v.size()), current_solution;
 			SolGeneratorMochila sol_gen;
 			double best_fitness, actual_fitness;
-
-
 			double KP_size = cli.getCapacity();	//Capacidad de la mochila
 
 			cout << "\nLa capacidad de la mochila es: " << cli.getCapacity() << endl;
-
+			for (i = 0; i < veces; i++){
 			//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
 			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
 			best_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
@@ -98,8 +98,9 @@ int main(int argc, char **argv) {
 					best_fitness = actual_fitness;
 				}
 			}
-
+                        cout << "El mejor fitness es: " << best_fitness <<  " para la ejecución: " << i+1 << endl;
 			kp_instance.saveResults(best_fitness, best_solution);	//Guardamos el resultado
+			}
 		}
 
 	}
