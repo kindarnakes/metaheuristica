@@ -57,7 +57,7 @@ class Interfaz {
 				} else if(opt == 2) {
 					fileName =  "KP/" + fileName;
 					InstanceKP inst(fileName);
-
+				}
 					int inst_num;
 					std::cout << "¿Que numero de instancia desea cargar?: ";
 					std::cin >> inst_num;
@@ -66,7 +66,7 @@ class Interfaz {
 					std::cin >> veces;
 
 					_capacity = inst.getCapacity();
-				}
+
 
 				if(not ret)
 					std::cerr << "ERROR: El fichero no se pudo abrir.\n";
