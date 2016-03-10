@@ -21,7 +21,6 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-
 	Interfaz cli;
 	int i;
 	int veces;
@@ -36,45 +35,36 @@ int main(int argc, char **argv) {
 		//Se ejecuta hasta que se carga una instancia de un fichero valido
 		vector<problem_element> inst_v = cli.read_instance(veces);
 
-		//LEFT FOR DEBUGGING
-		//Aqui iria el codigo que hace algo con una instancia
-		//cli.print_instance(inst_v);
-
 		//El problema seleccionado es TSP
 		if(cli.getOpt() == 1){
-				
 			InstanceTSP tsp_instance;
 			SolucionViajante best_solution(inst_v.size()), current_solution;
 			SolGeneratorViajante sol_gen;
 			double best_fitness, actual_fitness;
 			
 			for (i = 0; i < veces; i++){
-			//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
-			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
-			best_fitness = tsp_instance.getAptitude(inst_v, current_solution);
-			
-			for(unsigned int i = 0; i < 1000; i++){
+				//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
-				actual_fitness = tsp_instance.getAptitude(inst_v, current_solution);
+				best_fitness = tsp_instance.getAptitude(inst_v, current_solution);
+	
+				for(unsigned int i = 0; i < 1000; i++){
+					current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
+					actual_fitness = tsp_instance.getAptitude(inst_v, current_solution);
 
-				if(actual_fitness < best_fitness){
-					best_solution = current_solution;
-					best_fitness = actual_fitness;
-				}
+					if(actual_fitness < best_fitness){
+						best_solution = current_solution;
+						best_fitness = actual_fitness;
+					}
 			}
+				//Muestra la solucion
+				cout << "Para la ejecución: " << i+1 << endl << "El orden del recorrido es :\n";
+				for(auto i : best_solution.getSolucion())
+					cout << i << " -> ";
 
-			//Muestra la solucion
-			cout << "Para la ejecución: " << i+1 << endl << "El orden del recorrido es :\n";
-			for(auto i : best_solution.getSolucion())
-				cout << i << " -> ";
+				cout << "\ny la distancia total recorrida " << best_fitness << endl;
 
-			cout << "\ny la distancia total recorrida " << best_fitness << endl;
-
-
-			tsp_instance.saveResults(best_fitness, best_solution);		//Guardamos el resultado
+				tsp_instance.saveResults(best_fitness, best_solution);		//Guardamos el resultado
 			}
-
-
 		//El problema seleccionado es KP
 		} else{
 			InstanceKP kp_instance;
@@ -85,21 +75,21 @@ int main(int argc, char **argv) {
 
 			cout << "\nLa capacidad de la mochila es: " << cli.getCapacity() << endl;
 			for (i = 0; i < veces; i++){
-			//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
-			current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
-			best_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
-			
-			for(unsigned int i = 0; i < 1000; i++){
+				//Obtenemos 1000 soluciones diferentes, usamos la primera para inicializar best_fitness, sera el punto de partida
 				current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
-				actual_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
+				best_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
 
-				if(actual_fitness > best_fitness){
-					best_solution = current_solution;
-					best_fitness = actual_fitness;
-				}
+				for(unsigned int i = 0; i < 1000; i++){
+					current_solution = sol_gen.randomSolutionGenerator(inst_v.size());
+					actual_fitness = kp_instance.getAptitude(current_solution, KP_size, inst_v);
+
+					if(actual_fitness > best_fitness){
+						best_solution = current_solution;
+						best_fitness = actual_fitness;
+					}
 			}
-                        cout << "El mejor fitness es: " << best_fitness <<  " para la ejecución: " << i+1 << endl;
-			kp_instance.saveResults(best_fitness, best_solution);	//Guardamos el resultado
+                        	cout << "El mejor fitness es: " << best_fitness <<  " para la ejecución: " << i+1 << endl;
+				kp_instance.saveResults(best_fitness, best_solution);	//Guardamos el resultado
 			}
 		}
 

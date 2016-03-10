@@ -9,19 +9,12 @@ else ifeq ($(OS),Linux)
 endif
 
 DEBUG = -g
-OPTIMIZE = -O3
 
 all:
 	$(CC) -o main main.cpp $(FLAGS)
 
-prueba:
-	$(CC) prueba.cpp -o prueba $(FLAGS)
-
 debug:
 	$(CC) -o main main.cpp $(FLAGS) $(DEBUG)
-
-test:
-	$(CC) -o testInstance testInstance.cpp $(FLAGS)
 
 clean:
 	rm main
