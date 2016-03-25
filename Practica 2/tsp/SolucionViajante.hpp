@@ -1,7 +1,11 @@
 #ifndef __SOLUCIONVIAJANTE__
 #define __SOLUCIONVIAJANTE__
 
+
 #include <vector>
+#include <cmath>
+
+#include "../lib/Miscelanea.hpp"
 
 using namespace std;
 
@@ -40,6 +44,30 @@ class SolucionViajante{
 	  return *this;
 
 	}
+
+
+
+	double distancia(const problem_element a, const problem_element b) {
+		return sqrt(pow(a.a - b.a,2) + pow(a.b - b.b,2));
+	}
+
+
+
+	double getAptitude(vector <problem_element> &info){
+
+		double sumatorio = 0.0;
+
+		for(unsigned int i = 0; i < (info.size() - 1); i++){
+
+			//Sumamos la distancia entre el origen y el destino de cada camino de la solucion
+			sumatorio += distancia(info[ _solucion[i] ], info[ _solucion[i+1] ]);
+
+		}
+
+		return sumatorio;
+	}
+
+
      
      
   SolucionViajante(unsigned int objetos=0){
