@@ -1,12 +1,12 @@
-#ifndef		__LOCAL_SEARCH_TSP__
-#define		__LOCAL_SEARCH_TSP__
+#ifndef		__LOCAL_SEARCH_KP__
+#define		__LOCAL_SEARCH_KP__
 
 
 #include <vector>
 
 #include "../lib/Miscelanea.hpp"
 
-#include "SolucionViajante.hpp"
+#include "SolucionMochila.hpp"
 #include "neighborOperator.hpp"
 
 
@@ -14,33 +14,31 @@
 using namespace std;
 
 
-
-
-class localSearchTSP{
+class localSearchKP{
 
 
 	private:
 
 		double _bestFitness = 0;
-		SolucionViajante _bestSolution;
+		SolucionMochila _bestSolution;
 
 		neighborOperator _operador;
 
-		bestImrpovementTSP * _bestExplo = NULL;
-		firstImrpovementTSP * _firstExplo = NULL;
+		bestImrpovementKP * _bestExplo = NULL;
+		firstImrpovementKP * _firstExplo = NULL;
 
 
 	public:
 
 		//Constructores
-		localSearch(neighborOperator &operador, firstImprovementTSP &explorador){
+		localSearch(neighborOperator &operador, firstImprovementKP &explorador){
 
 			_operador = operador;
 			_firstExplo = &explorador;
 
 		}
 
-		localSearch(neighborOperator &operador, bestImprovementTSP &explorador){
+		localSearch(neighborOperator &operador, bestImprovementKP &explorador){
 
 			_operador = operador;
 			_bestExplo = &explorador;
@@ -50,23 +48,23 @@ class localSearchTSP{
 
 		//Modificadores
 		void setFitness(double &bestFitness){_bestFitness = bestFitness;};
-		void setSolution(SolucionViajante &bestSolution){_bestSolution = bestSolution;};
+		void setSolution(SolucionMochila &bestSolution){_bestSolution = bestSolution;};
 
 
 		//Observadores
 		double getFitness(){return _bestFitness;};
-		SolucionViajante getSolution(){return _bestSolution;};
+		SolucionMochila getSolution(){return _bestSolution;};
 		neighborOperator getOperator(){return _operador;};
 
 
 
 		//Metodo que devuelve el optimo local ¿Y su valor de fitness?
-		void localOptimum(vector <problem_element> &info, const SolucionViajante &initialSolution, SolucionViajante &optimumSolution, double &optimumFitness){
+		void localOptimum(vector <problem_element> &info, const int &KPSize, const SolucionMochila &initialSolution, SolucionMochila &optimumSolution, double &optimumFitness){
 
 
 		  int iteraciones = 1000, contador = 0;		//Cuenta el numero de veces que el optimo no varia
 		  double actualFitness;
-		  SolucionViajante actualSolution;
+		  SolucionMochila actualSolution;
 
 
 			_bestSolution = initialSolution;
@@ -74,28 +72,28 @@ class localSearchTSP{
 			while(iteraciones > 0 && contador < 2){
 
 
-				if(_firstImprovementTSP != NULL){
+				if(_firstImprovementKP != NULL){
 
-					//Generamos un vecindario para la solucion y despues lo exploramos
+					//Generamos un vecindario para la Solucion y despues lo exploramos
 					//El explorador se debe haber iniciado antes con uno de los tipos de operador
-					_firstImprovementTSP->generateNeighborhood(_bestSolution);
-					actualSolution = _firstImprovementTSP->explorateNeighborhood(info);
+					_firstImprovementKP->generateNeighborhood(_bestSolution);
+					actualSolution = _firstImprovementKP->explorateNeighborhood(info, KPSize);
 
 				}
 
 				else{
 
 
-					_bestImprovementTSP->generateNeighborhood(_bestSolution);
-					actualSolution = _bestImprovementTSP->explorateNeighborhood(info);
+					_bestImprovementKP->generateNeighborhood(_bestSolution);
+					actualSolution = _bestImprovementKP->explorateNeighborhood(info, KPSize);
 				}
 
-				actualFitness = actualSolution.getAptitude(info);
+				actualFitness = actualSolution.getAptitude(info, KPSize);
 
 
 				/*
 
-					La solucion devuelta en cada iteracion solo puede ser igual o mejor que
+					La Solucion devuelta en cada iteracion solo puede ser igual o mejor que
 				la antetior, porque se incluye a si misma en el vecindario para compararse
 
 																							*/

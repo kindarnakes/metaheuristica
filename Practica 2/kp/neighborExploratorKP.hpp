@@ -4,19 +4,11 @@
 
 #include <vector>
 
+#include "../lib/Miscelanea.hpp"
+
 #include "neighborOperator.hpp"
 
 using namespace std;
-
-
-
-/* De momento lo estoy haciendo todo de forma general para ver como hacerlo
-
-
-		Quizas podamos implementar en esta clase todo como metodos, pero no 
-		se si a lo mejor seria mas coñazo
-
-*/
 
 
 class neighborExploratorKP{
@@ -47,7 +39,21 @@ class neighborExploratorKP{
 		SolucionMochila getNeighbor(int pos){return _neighborhood[pos];};
 
 		//Funciones auxiliares
-		void addNeighbor(SolucionMochila &neighbor){_neighborhood.push_back(neighbor);};
+		bool addNeighbor(SolucionMochila &neighbor){
+
+
+			for(int i = 0; i < _neighborhood.size(); i++){
+
+				if(_neighborhood[i] == neighbor)
+					return false;
+			}
+
+			_neighborhood.push_back(neighbor);
+
+		  return true;
+		}
+
+		void reiniciarVecindario(){_neighborhood.clear();};
 };
 
 
@@ -69,6 +75,7 @@ class firstImprovementKP: public neighborExploratorKP{
 		//Metodo que genera un vecindario a partir de una solucion inicial y un operador determinado
 		void generateNeighborhood(SolucionMochila &initialSolution){
 
+			reiniciarVecindario();
 			addNeighbor(initialSolution);
 
 			while(CONDICION_PARADA){		//Numero de vecinos que se quieren generar para cada iteracion
@@ -77,8 +84,6 @@ class firstImprovementKP: public neighborExploratorKP{
 
 				addNeighbor(getOperator().generateNeighbor(initialSolution));
 
-
-			// ---> Hay que controlar que no se repitan soluciones (Funcion que vaya uno a uno??) <---
 
 			}
 
@@ -149,6 +154,7 @@ class bestImprovementKP: public neighborExploratorKP{
 		//Metodo que genera un vecindario a partir de una solucion inicial y un operador determinado
 		void generateNeighborhood(SolucionMochila &initialSolution){
 
+			reiniciarVecindario();
 			addNeighbor(initialSolution);
 
 			while(CONDICION_PARADA){		//Numero de vecinos que se quieren generar para cada iteracion
@@ -156,9 +162,6 @@ class bestImprovementKP: public neighborExploratorKP{
 
 
 				addNeighbor(getOperator().generateNeighbor(initialSolution));
-
-
-			// ---> Hay que controlar que no se repitan soluciones (Funcion que vaya uno a uno??) <---
 
 			}
 

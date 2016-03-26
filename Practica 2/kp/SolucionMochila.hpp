@@ -45,6 +45,23 @@ class SolucionMochila{
 
 
 
+	//Sobrecarga del Operador ==
+	inline bool & operator==(const SolucionMochila &s){
+
+	
+		for(int i = 0; i < this->_solucion.size(); i++){
+
+			if(this->_solucion[i] != s.getSolucion(i))
+				return false;
+
+		}
+
+		return true;
+	}
+
+
+
+
 
 	//Sumatorio del peso de la solucion actual
 	int pesoSolucion(vector <problem_element> &info){

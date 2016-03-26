@@ -42,7 +42,21 @@ class neighborExploratorTSP{
 		SolucionViajante getNeighbor(int pos){return _neighborhood[pos];};
 
 		//Funciones auxiliares
-		void addNeighbor(SolucionViajante &neighbor){_neighborhood.push_back(neighbor);};
+		void addNeighbor(SolucionViajante &neighbor){
+
+			//Comprobamos que no este ya incluido en el vecindario
+			for(int i = 0; i < _neighborhood.size(); i++){
+
+				if(_neighborhood[i] == neighbor)
+					return false;
+			}
+
+			_neighborhood.push_back(neighbor);
+
+		  return true;
+		}
+
+
 		void reiniciarVecindario(){_neighborhood.clear();};
 };
 
@@ -73,9 +87,6 @@ class firstImprovementTSP: public neighborExploratorTSP{
 
 
 				addNeighbor(getOperator().generateNeighbor(initialSolution));
-
-
-			// ---> Hay que controlar que no se repitan soluciones (Funcion que vaya uno a uno??) <---
 
 			}
 
@@ -155,9 +166,6 @@ class bestImprovementTSP: public neighborExploratorTSP{
 
 
 				addNeighbor(getOperator().generateNeighbor(initialSolution));
-
-
-			// ---> Hay que controlar que no se repitan soluciones (Funcion que vaya uno a uno??) <---
 
 			}
 
