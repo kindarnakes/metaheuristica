@@ -4,20 +4,14 @@
 
 #include <vector>
 
+#include "../lib/Miscelanea.hpp"
+
+#include "SolucionViajante.hpp"
 #include "neighborOperator.hpp"
 
 
 using namespace std;
 
-
-
-/* De momento lo estoy haciendo todo de forma general para ver como hacerlo
-
-
-		Quizas podamos implementar en esta clase todo como metodos, pero no 
-		se si a lo mejor seria mas coñazo
-
-*/
 
 
 class neighborExploratorTSP{
@@ -49,6 +43,7 @@ class neighborExploratorTSP{
 
 		//Funciones auxiliares
 		void addNeighbor(SolucionViajante &neighbor){_neighborhood.push_back(neighbor);};
+		void reiniciarVecindario(){_neighborhood.clear();};
 };
 
 
@@ -70,6 +65,7 @@ class firstImprovementTSP: public neighborExploratorTSP{
 		//Metodo que genera un vecindario a partir de una solucion inicial y un operador determinado
 		void generateNeighborhood(SolucionViajante &initialSolution){
 
+			reiniciarVecindario();
 			addNeighbor(initialSolution);
 
 			while(CONDICION_PARADA){		//Numero de vecinos que se quieren generar para cada iteracion
@@ -87,7 +83,7 @@ class firstImprovementTSP: public neighborExploratorTSP{
 
 
 		//Metodo que explora el vecindario en funcion de la estrategia (best o first)
-		SolucionViajante explorateNeighborhood(){
+		SolucionViajante explorateNeighborhood(vector <problem_element> &info){
 
 
 			if(getNeighborhood().size() == 0){
@@ -101,12 +97,12 @@ class firstImprovementTSP: public neighborExploratorTSP{
 
 
 			bestSolution = getNeighbor(0);				//El primero sera el optimo actual
-			bestFitness = bestSolution.getAptitude();
+			bestFitness = bestSolution.getAptitude(info);
 
 
 			for(int i = 1; i < getNeighborhood().size(); i++){
 
-				actualFitness = getNeighbor(i).getAptitude();
+				actualFitness = getNeighbor(i).getAptitude(info);
 
 				//OJO --> Dependera del tipo de problema
 				if(actualFitness <= bestFitness)
@@ -150,6 +146,8 @@ class bestImprovementTSP: public neighborExploratorTSP{
 		//Metodo que genera un vecindario a partir de una solucion inicial y un operador determinado
 		void generateNeighborhood(SolucionViajante &initialSolution){
 
+
+			reiniciarVecindario();
 			addNeighbor(initialSolution);
 
 			while(CONDICION_PARADA){		//Numero de vecinos que se quieren generar para cada iteracion
@@ -167,7 +165,7 @@ class bestImprovementTSP: public neighborExploratorTSP{
 
 
 		//Metodo que explora el vecindario en funcion de la estrategia (best o first)
-		SolucionViajante explorateNeighborhood(){
+		SolucionViajante explorateNeighborhood(vector <problem_element> &info){
 
 
 			if(getNeighborhood().size() == 0){
@@ -181,12 +179,12 @@ class bestImprovementTSP: public neighborExploratorTSP{
 
 
 			bestSolution = getNeighbor(0);				//El primero sera el optimo actual
-			bestFitness = bestSolution.getAptitude();
+			bestFitness = bestSolution.getAptitude(info);
 
 
 			for(int i = 1; i < getNeighborhood().size(); i++){
 
-				actualFitness = getNeighbor(i).getAptitude();
+				actualFitness = getNeighbor(i).getAptitude(info);
 
 				//OJO --> Dependera del tipo de problema
 				if(actualFitness <= bestFitness){

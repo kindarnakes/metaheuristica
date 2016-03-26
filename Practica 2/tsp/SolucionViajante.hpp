@@ -45,6 +45,20 @@ class SolucionViajante{
 
 	}
 
+	
+	//Sobrecarga del Operador ==
+	inline bool & operator==(const SolucionViajante &s){
+
+	
+		for(int i = 0; i < this->_solucion.size(); i++){
+
+			if(this->_solucion[i] != s.getSolucion(i))
+				return false;
+
+		}
+
+		return true;
+	}
 
 
 	double distancia(const problem_element a, const problem_element b) {
