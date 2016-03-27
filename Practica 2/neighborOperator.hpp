@@ -3,6 +3,7 @@
 
 
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -30,16 +31,27 @@ class neighborOperator{
 		neighborOperator(){};
 
 
-		//Metodo que genera un vecino de una solucion, teniendo en cuenta unos parametros
-		Solution generateNeighbor(Solucion &initialSolution, const int &parametros){
-
+		//Metodo que genera un vecino de una solucion, pasandole un vector de posiciones a cambiar
+		SolucionMochila generateNeighborKP(SolucionMochila &initialSolution, vector<int> &parametros){
+                        int i;
+                        SolucionMochila solucion(initialSolution);
+                        for (i = 0; i < parametros.size(); i++){
+                	        solucion.setSolucion(parametros[i], abs(solucion.getSolucion(parametros[i]) - 1)); 
+                                 }
+                        return solucion;
+		}
+		
+		
+		SolucionViajante generateNeighborTSP(SolucionViajante &initialSolution, int posA, int posB, bool swaap = false){
+			SolucionViajante solucion(initialSolution);
+			if (swaap == false){
+				int aux = solucion.getSolucion(posA);
+				solucion.setSolucion(posA, solucion.getSolucion(posB));
+				solucion.setSolucion(posB, aux);
+			}
 			
-
-				//Ni idea de que hay que hacer con los parametros o de cuales son
-				//Pero el resto es solo implementar la funcionalidad de ese operador
-				
-
-
+			
+			
 		}
 
 };
